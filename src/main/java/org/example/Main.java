@@ -9,9 +9,9 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     public static void main(String[] args) {
         Student s=new Student();
-        s.setSname("jonnes");
-        s.setAge(22);
-        s.setRollNo(1);
+        s.setSname("hem");
+        s.setAge(8);
+        s.setRollNo(21);
         Configuration cf=new Configuration();
         cf.addAnnotatedClass(org.example.Student.class);
         cf.configure();
