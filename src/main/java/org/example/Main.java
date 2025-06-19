@@ -9,18 +9,21 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     public static void main(String[] args) {
         Student s=new Student();
-        s.setSname("hem");
-        s.setAge(8);
-        s.setRollNo(21);
-        Configuration cf=new Configuration();
-        cf.addAnnotatedClass(org.example.Student.class);
-        cf.configure();
+        s.setSname("jon");
+        s.setAge(21);
+        s.setRollNo(4);
 
-        SessionFactory sf=cf.buildSessionFactory();
+        SessionFactory sf=new Configuration()
+                .configure()
+                .addAnnotatedClass(org.example.Student.class)
+                . buildSessionFactory();
         Session session=sf.openSession();
         Transaction transaction=session.beginTransaction();
-        session.save(s);
+        session.persist(s);
         transaction.commit();
+        session.close();
+        sf.close();
         System.out.println(s);
+
     }
 }
