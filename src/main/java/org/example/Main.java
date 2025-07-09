@@ -24,7 +24,7 @@ public class Main {
                 . buildSessionFactory();
         Session session=sf.openSession();
         Transaction transaction=session.beginTransaction();
-        session.persist(s);
+
         //session.merge(s);
         transaction.commit();
   // used for getting      s2=session.get(Student.class,3) ;
