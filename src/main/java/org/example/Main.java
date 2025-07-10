@@ -6,18 +6,33 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
-       Student s=new Student();
+        Laptop l=new Laptop();
+        l.setBrand("asus");
+        l.setLid(1);
+        l.setRam(16);
+
+        Laptop l1=new Laptop();
+        l1.setBrand("dell");
+        l1.setLid(2);
+        l1.setRam(17);
+
+
+        Student s=new Student();
        s.setSname("jonnes");
        s.setAge(22);
       s.setRollNo(4);
-       Student s2=null;
 
-        Laptop l=new Laptop();
-        l.setBrand("asus");
-        l.setLid(2);
-        l.setRam(16);
+      l.setStudent(s);
+      l1.setStudent(s);
+
+      s.setLaptops(Arrays.asList(l,l1));
+
+
 
         SessionFactory sf=new Configuration()
                 .addAnnotatedClass(org.example.Student.class)
@@ -28,6 +43,7 @@ public class Main {
         Transaction transaction=session.beginTransaction();
         session.persist(s);
         session.persist(l);
+        session.persist(l1);
         transaction.commit();
   // used for getting      s2=session.get(Student.class,3) ;
         session.close();

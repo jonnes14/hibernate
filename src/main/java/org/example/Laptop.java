@@ -3,6 +3,7 @@ package org.example;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 //@Embeddable
 @Entity
@@ -11,6 +12,8 @@ public class Laptop {
     private int lid;
     private int ram;
     private String brand;
+    @ManyToOne
+    Student student;
     public int getLid() {
         return lid;
     }
@@ -35,13 +38,21 @@ public class Laptop {
         this.brand = brand;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     @Override
     public String toString() {
         return "Laptop{" +
                 "lid=" + lid +
-                ", lname='"  + '\'' +
-                ", ram='" + ram + '\'' +
+                ", ram=" + ram +
                 ", brand='" + brand + '\'' +
+                ", student=" + student +
                 '}';
     }
 }

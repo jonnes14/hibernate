@@ -2,8 +2,9 @@ package org.example;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-
+import java.util.List;
 
 @Entity
 public class Student {
@@ -11,8 +12,9 @@ public class Student {
     private int rollNo;
     private String sname;
     private int age;
-    @OneToOne
-    Laptop laptop;
+   // @OneToOne
+    @OneToMany(mappedBy = "student")
+    List<Laptop> laptops;
     public String getSname() {
         return sname;
     }
@@ -33,11 +35,12 @@ public class Student {
         return age;
     }
 
-    public Laptop getLaptop(){
-        return laptop;
+    public List<Laptop> getLaptops() {
+        return laptops;
     }
-    public void setLaptop(Laptop laptop){
-        this.laptop=laptop;
+
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
 
     public void setAge(int age) {
@@ -50,7 +53,7 @@ public class Student {
                 "rollNo=" + rollNo +
                 ", sname='" + sname + '\'' +
                 ", age=" + age +
-                ", laptop=" + laptop +
+                ", laptop=" + laptops +
                 '}';
     }
 }
