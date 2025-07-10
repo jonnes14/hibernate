@@ -8,14 +8,14 @@ import org.hibernate.cfg.Configuration;
 
 public class Main {
     public static void main(String[] args) {
-//        Student s=new Student();
-//        s.setSname("kan");
-//        s.setAge(21);
-//        s.setRollNo(4);
-//        Student s2=null;
+       Student s=new Student();
+       s.setSname("jonnes");
+       s.setAge(22);
+      s.setRollNo(4);
+       Student s2=null;
         Laptop l=new Laptop();
-        l.setBrand("dell");
-        l.setLid(1);
+        l.setBrand("asus");
+        l.setLid(2);
         l.setRam(16);
 
         SessionFactory sf=new Configuration()
@@ -24,8 +24,7 @@ public class Main {
                 . buildSessionFactory();
         Session session=sf.openSession();
         Transaction transaction=session.beginTransaction();
-
-        //session.merge(s);
+        session.persist(s);
         transaction.commit();
   // used for getting      s2=session.get(Student.class,3) ;
         session.close();
