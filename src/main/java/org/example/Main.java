@@ -13,6 +13,7 @@ public class Main {
        s.setAge(22);
       s.setRollNo(4);
        Student s2=null;
+
         Laptop l=new Laptop();
         l.setBrand("asus");
         l.setLid(2);
@@ -20,11 +21,13 @@ public class Main {
 
         SessionFactory sf=new Configuration()
                 .addAnnotatedClass(org.example.Student.class)
+                .addAnnotatedClass(org.example.Laptop.class)
                 .configure()
                 . buildSessionFactory();
         Session session=sf.openSession();
         Transaction transaction=session.beginTransaction();
         session.persist(s);
+        session.persist(l);
         transaction.commit();
   // used for getting      s2=session.get(Student.class,3) ;
         session.close();
