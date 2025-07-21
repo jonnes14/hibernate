@@ -25,14 +25,24 @@ public class Main {
                 . buildSessionFactory();
         Session session=sf.openSession();
 
-       Query query=session.createQuery("from Laptop"); // provide all the details
-        List<Laptop> laptops=query.getResultList();
+        //ehcache l2cache
+        Laptop l1=session.get(Laptop.class,2);
+        System.out.println(l1);
+        Session session1=sf.openSession();
+        Laptop l2=session1.get(Laptop.class,2);
+        System.out.println(l2);
+        session1.close();
 
+      // Query query=session.createQuery("from Laptop"); // provide all the details
+//         Query query=session.createQuery("from Laptop where brand='mac'"); // provided with specific details
+//
 
+//        System.out.println(laptops);
 
   // used for getting      s2=session.get(Student.class,3) ;
     session.close();
        sf.close();
+
 
         //System.out.println(l);
     }
