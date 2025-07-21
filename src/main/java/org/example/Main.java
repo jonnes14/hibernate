@@ -36,18 +36,10 @@ public class Main {
         s1.setAge(23);
         s1.setRollNo(5);
 
-        Student s2=new Student();
-        s2.setSname("Jegan");
-        s2.setAge(23);
-        s2.setRollNo(6);
+
 
         s.setLaptops(Arrays.asList(l,l1));
-        s1.setLaptops(Arrays.asList(l1,l2));
-        s2.setLaptops(Arrays.asList(l2,l));
-
-      l.setStudent(Arrays.asList(s,s2));
-      l1.setStudent(Arrays.asList(s,s1));
-      l2.setStudent(Arrays.asList(s1,s2));
+        s1.setLaptops(Arrays.asList(l2));
 
 
         SessionFactory sf=new Configuration()
@@ -59,16 +51,19 @@ public class Main {
         Transaction transaction=session.beginTransaction();
         session.persist(s);
         session.persist(s1);
-        session.persist(s2);
+
         session.persist(l);
 
         session.persist(l1);
         session.persist(l2);
         transaction.commit();
   // used for getting      s2=session.get(Student.class,3) ;
-        session.close();
-        sf.close(); 
-
-        System.out.println(l);
+//        session.close();
+//        sf.close();
+        Session session1=sf.openSession();
+        Student s4=session1.get(Student.class,22);
+        session1.close();
+        sf.close();
+        //System.out.println(l);
     }
 }

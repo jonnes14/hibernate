@@ -10,8 +10,8 @@ public class Student {
     private int rollNo;
     private String sname;
     private int age;
-   // @OneToOne
-    @ManyToMany
+   // one student can have multiple laptop
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Laptop> laptops;
     public String getSname() {
         return sname;

@@ -11,8 +11,8 @@ public class Laptop {
     private int lid;
     private int ram;
     private String brand;
-    @ManyToMany(mappedBy = "laptops")
-   private List<Student> student;
+
+
     public int getLid() {
         return lid;
     }
@@ -37,13 +37,6 @@ public class Laptop {
         this.brand = brand;
     }
 
-    public List<Student> getStudent() {
-        return student;
-    }
-
-    public void setStudent(List<Student> student) {
-        this.student = student;
-    }
 
     @Override
     public String toString() {
@@ -51,7 +44,6 @@ public class Laptop {
                 "lid=" + lid +
                 ", ram=" + ram +
                 ", brand='" + brand + '\'' +
-                ", student=" + student +
                 '}';
     }
 }
